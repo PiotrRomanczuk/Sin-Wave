@@ -1,6 +1,6 @@
 console.log("start"); // first test console.log 
 
-<link rel="stylesheet" href='./styles.css'></link>
+{/* <link rel="stylesheet" href='./styles.css'></link> */}
 
         // Websocket //
 
@@ -37,7 +37,7 @@ server.on('connection', function (socket) {
                     (msg.toString())        //          (to each other!)
                         ); 
         }
-    });
+    });``
 
     // When a socket closes, or disconnects, remove it from the array.
     socket.on('close', function () {                    // 
@@ -67,8 +67,8 @@ app.get('/', function (req, res) {                              //  Express app 
 
 
                                                                 //-------------------------------------------------//
-app.get('/draw.html', function (req, res) {                     //                                                 //
-    fs.readFile('draw.html', function (err, data) {             //      ???  Express app gets to the file  ???     //
+app.get('/websocket.clent.js', function (req, res) {                     //                                                 //
+    fs.readFile('websocket.clent.js', function (err, data) {             //      ???  Express app gets to the file  ???     //
         res.writeHead(200, { 'Content-Type': 'text/html' });    //      ???         that dosn't exist      ???     //
         res.write(data);                                        //                                                 //
         return res.end();                                       //-------------------------------------------------//
