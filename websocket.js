@@ -16,10 +16,6 @@ const app = express();
 
 var fs = require('fs'); // fs - as a "file system module"
 
-// Empty array 
-sockets = [];
-// Timer with const -1 
-timerId = -1;
 
 
 //-----------------------------------------------------------------------------------------------------------------------//
@@ -49,6 +45,14 @@ ws.onmessage = function(msg) {
   document.querySelector('#messages').innerHTML = `<div>${msg.data}</div>`;
 };
 
+
+
+
+
+// Empty array 
+sockets = [];
+// Timer with const -1 
+timerId = -1;
 
 
 // Server ON with one parametter socket - as an one single var of the empty array
