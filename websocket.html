@@ -1,14 +1,48 @@
 <html>
 <head>
-    <script type="text/javascript" src="websocket.js" ></script>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" >
+// src="websocket-client.js"    
+/*-----------------------------------------------------------------------------------------------------------------------//
+//                                                                                                                       //
+//                                  Browser WebSockets have slightly different syntax than `ws`.                         //
+//                                  Instead of EventEmitter syntax `on('open')`, you assign a callback                   //
+//                                  to the `onopen` property.                                                            //
+//                                                                                                                       //
+//                                                                                                                       //
+//                                                                                                                       //
+//-----------------------------------------------------------------------------------------------------------------------*/
+
+const ws = new WebSocket('ws://localhost:12000');
+
+ws.onopen = function() {                                                      // Open a new WebSocket
+  document.querySelector('#send').disabled = false;                           //
+
+    document.querySelector('#send').addEventListener('click', function () {   //
+        document.querySelector('#mirror').innerHTML =                         //
+            document.querySelector('#message').value;                         //
+        
+        ws.send(document.querySelector('#message').value);                    //
+  });
+};
+  
+ws.onmessage = function(msg) {                                                //
+  document.querySelector('#messages').innerHTML = `<div>${msg.data}</div>`;}   
+    
+</script>
 </head>
 <body>
-    <h1>Chat</h1>
-    <div>
-        <input id="message" placeholder="Message">
-        <button id="send" disabled="true">Send</button>
+    <div class="container">
+            <h1>Chat</h1>
+                <div>
+                    <input id="message" placeholder="Message">
+                    <button id="send" disabled="true">Send</button>
+                </div>
+                <div id="messages">-1</div>
+                <div id="mirror">-1</div>
     </div>
-    <div id="messages">-1</div>
-    <div id="mirror">-1</div>
+    <div class="container">
+
+    </div>
 </body>
 </html>
