@@ -19,8 +19,6 @@ var fs = require('fs'); // fs - as a "file system module"
 
 // Empty array 
 sockets = [];
-// Timer with const -1 
-timerId = -1;
 
 
 // Server ON with one parametter socket - as an one single var of the empty array
@@ -28,7 +26,7 @@ server.on('connection', function (socket) {
 
 
     sockets.push(socket); // Dependency between sockets and socket
-
+``
     socket.on('message', function (msg) {   // Message on socket sent with function with parametter "msg"
         {
             console.log(msg.toString());    //   console.log a message as a string
@@ -37,13 +35,11 @@ server.on('connection', function (socket) {
                     (msg.toString())        //          (to each other!)
                         ); 
         }
-    });``
+    });
 
     // When a socket closes, or disconnects, remove it from the array.
     socket.on('close', function () {                    // 
         sockets = sockets.filter(s => s !== socket);    // ??? s => s !== socket ???
-        if ( timerId >= 0)                              // Always True
-            clearTimeout(timerId);                      // Clear timer
     });
 });
 
@@ -67,8 +63,8 @@ app.get('/', function (req, res) {                              //  Express app 
 
 
                                                                 //-------------------------------------------------//
-app.get('/websocket.clent.js', function (req, res) {                     //                                                 //
-    fs.readFile('websocket.clent.js', function (err, data) {             //      ???  Express app gets to the file  ???     //
+app.get('/websocket.clent.js', function (req, res) {            //                                                 //
+    fs.readFile('websocket.clent.js', function (err, data) {    //      ???  Express app gets to the file  ???     //
         res.writeHead(200, { 'Content-Type': 'text/html' });    //      ???         that dosn't exist      ???     //
         res.write(data);                                        //                                                 //
         return res.end();                                       //-------------------------------------------------//
